@@ -1,11 +1,13 @@
 class ArticlesController < ApplicationController
 
     def show
-        debugger 
+        # debugger 
         @article = Article.find(params[:id])
      # the above line will find the article with the id
+    end
 
-     #byebug
-
+    def index
+        @articles = Article.all
+      
     end
 end
