@@ -7,4 +7,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :articles, only: [:show]
+  #rails routes --expanded
+  #the above command will show all the routes
+
+# Article.all
+# this will show all the articles
+
 end
