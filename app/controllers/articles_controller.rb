@@ -16,6 +16,14 @@ class ArticlesController < ApplicationController
     end
 
     def create
-      render plain: params[:article]
+    #   render plain: params[:article]
+      # the above line will show the params in the browser
+        @article = Article.new(params.require(:article).permit(:title, :description))
+        # the above line will create a new article
+        # @article = Article.new(article_params)
+        # render plain: params[:article]
+        @article.save
+        redirect_to @article
+        # redirect_to article_path(@article)
     end
 end
