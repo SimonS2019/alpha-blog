@@ -15,6 +15,24 @@ class ArticlesController < ApplicationController
         @article = Article.new
     end
 
+    def edit
+        @article = Article.find(params[:id])
+
+    end
+
+    def update
+        # debugger
+        @article = Article.find(params[:id])
+        @article.update(params.require(:article).permit(:title, :description))
+        if @article.save
+            flash[:notice] = "Article was updated"
+            # the above line will show the flash message
+        redirect_to @article
+        else
+            render 'edit'
+        end
+    end
+
     def create
     #   render plain: params[:article]
       # the above line will show the params in the browser
