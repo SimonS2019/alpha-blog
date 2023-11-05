@@ -8,7 +8,13 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :articles, only: [:show, :index, :new, :create, :edit, :update]
+  # resources :articles, only: [:show, :index, :new, :create, :edit, :update,:destroy]
+# the above line will create all the routes for the articles
+# so we don't need to write the routes for the articles
+resources :articles
+
+# we can mofiify the routes by using the only option
+
   #rails routes --expanded
   #the above command will show all the routes
 
