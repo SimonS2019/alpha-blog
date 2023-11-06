@@ -1,8 +1,10 @@
 class ArticlesController < ApplicationController
-
+    before_action :set_article, only: [:edit, :update, :show, :destroy]
+# the above line will call the set_article method before the edit, update, show, destroy methods
+    
     def show
         # debugger 
-        @article = Article.find(params[:id])
+        #@article = Article.find(params[:id])
      # the above line will find the article with the id
     end
 
@@ -16,14 +18,14 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        @article = Article.find(params[:id])
+        #@article = Article.find(params[:id])
 
     end
 
     def update
         # debugger
-        @article = Article.find(params[:id])
-        @article.update(params.require(:article).permit(:title, :description))
+        #@article = Article.find(params[:id])
+        @article.update(article_params)
         if @article.save
             flash[:notice] = "Article was updated"
             # the above line will show the flash message
@@ -36,7 +38,7 @@ class ArticlesController < ApplicationController
     def create
     #   render plain: params[:article]
       # the above line will show the params in the browser
-        @article = Article.new(params.require(:article).permit(:title, :description))
+        @article = Article.new(article_params)
         # the above line will create a new article
         # @article = Article.new(article_params)
         # render plain: params[:article]
@@ -53,11 +55,21 @@ class ArticlesController < ApplicationController
     end
 
     def destroy
-        @article = Article.find(params[:id])
+        #@article = Article.find(params[:id])
         @article.destroy
         flash[:notice] = "Article was deleted successfully"
         redirect_to articles_path
         # the above line will redirect to the articles path
       
     end
+
+    private 
+    def set_article
+        @article = Article.find(params[:id])
+    end
+
+    def article_params
+        params.require(:article).permit(:title, :description)
+    end
+
 end
