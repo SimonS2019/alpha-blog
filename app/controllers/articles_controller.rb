@@ -39,6 +39,8 @@ class ArticlesController < ApplicationController
     #   render plain: params[:article]
       # the above line will show the params in the browser
         @article = Article.new(article_params)
+        @article.user = User.first
+
         # the above line will create a new article
         # @article = Article.new(article_params)
         # render plain: params[:article]
